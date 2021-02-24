@@ -1,0 +1,14 @@
+{
+    "name": "nodeapi",
+    "version": "1.0.0",
+    "description": "API Node.js aula Programação Web Avançada",
+    "main": "app.js",
+    "author": "Gustavo Morais",
+    "license": "MIT",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
