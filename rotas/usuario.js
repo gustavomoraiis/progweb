@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router();
+const controller = require('../controller/usuario');
 // const usuarios = [
 //     {id: 1, nome: 'Henrique', email:'henrique@grupointegrado.com.br', senha:'mudar123456', avatar:'encurtador.com.br/vCPR9'},
 //     {id: 2, nome: 'Gustavo', email:'gustavo@grupointegrado.com.br', senha:'mudar159951', avatar:'encurtador.com.br/vCPR9'},
@@ -8,19 +9,21 @@ const router = Router();
 // ];
 
 router.get('/:id?', (req, res) => {
-    res.send({})
+    const usuarios = controller.getUsuarios();
+
+    res.send(usuarios);
 });
 
 router.post('/', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 router.put('/:id?', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 router.delete('/:id?', (req, res) => {
-    res.send({})
+    res.send({});
 });
 // router.get('/:id?', function(req, res){
 //     let result;

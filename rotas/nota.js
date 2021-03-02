@@ -8,19 +8,19 @@ const router = Router();
 // ];
 
 router.get('/usuarioId?', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 router.post('/', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 router.put('/:usuarioId?', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 router.delete('/:usuarioId?', (req, res) => {
-    res.send({})
+    res.send({});
 });
 
 
