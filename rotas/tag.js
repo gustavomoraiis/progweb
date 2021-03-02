@@ -1,21 +1,26 @@
-const express = require('express');
-const router = express.Router();
-const tags = [
-    {notaId: 1, nome:'aprovado'},
-    {notaId: 2, nome:'reprovado'},
-    {notaId: 3, nome:'aprovado'},
-    {notaId: 4, nome:'reprovado'}
-];
+const { Router } = require('express');
+const router = Router();
+// const tags = [
+//     {notaId: 1, nome:'aprovado'},
+//     {notaId: 2, nome:'reprovado'},
+//     {notaId: 3, nome:'aprovado'},
+//     {notaId: 4, nome:'reprovado'}
+// ];
 
-router.get('/:notaId?', function(req, res){
-    let result;
+router.get('/notaId?', (req, res) => {
+    res.send({})
+});
 
-    if (req.params.notaId) {
-        result = tags.find((u) => req.params.notaId == u.notaId);
-    }else{
-        result = tags;
-    }
-    res.json(result);
+router.post('/', (req, res) => {
+    res.send({})
+});
+
+router.put('/:notaId?', (req, res) => {
+    res.send({})
+});
+
+router.delete('/:notaId?', (req, res) => {
+    res.send({})
 });
 
 
