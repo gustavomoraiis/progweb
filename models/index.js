@@ -4,7 +4,7 @@ const database = {};
 const options = {
     username: 'postgres',
     password: 'progweb1010',
-    database: 'notas',
+    database: 'postgres',
     host: 'localhost',
     dialect: 'postgres',
 };
