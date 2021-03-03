@@ -1,3 +1,4 @@
+const database = require('../models');
 const controller = {};
 
 controller.getUsuario() = () => {
