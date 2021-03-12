@@ -32,5 +32,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     );
     
+    Usuario.associate = function(models) {
+      this.hasMany(models.Nota,{
+          foreignKey: 'usuarioId',
+      });
+  };
+
     return Usuario;
   };
