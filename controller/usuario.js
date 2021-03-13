@@ -1,4 +1,4 @@
-const { Usuario } = require('../models');
+const { Usuario } = require('../models/usuario');
 const controller = {};
 
 controller.getUsuario = async (id = null) => {
@@ -24,8 +24,12 @@ controller.edit = async (id, usuario) => {
 };
 
 controller.remove = async (id) =>{
-    
-    return await Usuario.destroy({where: {id}});
+    try{
+    return await Usuario.destroy(id);
+    } catch (error){
+        console.log(error);
+        throw new Error(error);
+    }
 };
 
 module.exports = controller;
