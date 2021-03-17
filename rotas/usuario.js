@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const controller = require('../controller/usuario');
-const { Usuario } = require('../models/usuario');
+const controller = require('../controller/default');
+const { Usuario } = require('../models');
 // const usuarios = [
 //     {id: 1, nome: 'Henrique', email:'henrique@grupointegrado.com.br', senha:'mudar123456', avatar:'encurtador.com.br/vCPR9'},
 //     {id: 2, nome: 'Gustavo', email:'gustavo@grupointegrado.com.br', senha:'mudar159951', avatar:'encurtador.com.br/vCPR9'},
@@ -13,7 +13,7 @@ router.get('/:id?', async (req, res) => {
     // const usuarios = controller.getUsuarios();
     const {id} = req.params;
 
-    const usuarios = await controller.getUsuario(id);
+    const usuarios = id ? await controller.getById(Usuario, id) : await controller.getAll(Usuario) ;
     res.send(usuarios);
 });
 
