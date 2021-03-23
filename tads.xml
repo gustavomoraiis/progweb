@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tads [
+<!ELEMENT tads (disciplina+)>
+<!ELEMENT disciplina (nome , carga , turma , professor , ano , alunos)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT carga (#PCDATA)>
+<!ELEMENT turma (#PCDATA)>
+<!ELEMENT professor (#PCDATA)>
+<!ELEMENT ano (#PCDATA)>
+<!ELEMENT alunos (aluno+)>
+<!ELEMENT aluno (nome, ra, rg, email)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT ra (#PCDATA)>
+<!ELEMENT rg (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+]>
+    <tads>
+        <disciplina>
+            <nome>Algoritmos e Lógica de Programação</nome>
+            <carga>84 Aulas</carga>
+            <turma>1A 2</turma>
+            <professor>Lucas Coelho</professor>
+            <ano>2021/A</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+            </alunos>
+        </disciplina>
+        <disciplina>
+            <nome>Empreendedorismo e Plano de Negócios</nome>
+            <carga>21 Aulas</carga>
+            <turma>5A 10</turma>
+            <professor>Rose Scheffer</professor>
+            <ano>2021/A</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+            </alunos>
+        </disciplina>
+        <disciplina>
+            <nome>Programação Web Avançado</nome>
+            <carga>84 Aulas</carga>
+            <turma>5A 10</turma>
+            <professor>Alan Ferreira dos Santos</professor>
+            <ano>2021/A</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+            </alunos>
+        </disciplina>
+        <disciplina>
+            <nome>Programação para Dispositivos Móveis</nome>
+            <carga>84 Aulas</carga>
+            <turma>5A 10</turma>
+            <professor>Alan Ferreira dos Santos</professor>
+            <ano>2021/1</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+                
+            </alunos>
+        </disciplina>
+        <disciplina>
+            <nome>Prática em Desenvolvimento de Sistemas</nome>
+            <carga>84 Aulas</carga>
+            <turma>5A 10</turma>
+            <professor>Bruno Henrique Pachulski Camara</professor>
+            <ano>2021/1</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+            </alunos>
+        </disciplina>
+        <disciplina>
+            <nome>Optativa</nome>
+            <carga>21 Aulas</carga>
+            <turma>5A 10</turma>
+            <professor>Rosely Scheffer</professor>
+            <ano>2021/1</ano>
+            <alunos>
+                <aluno>
+                    <nome>Gustavo Henrique Morais da Silva</nome>
+                    <ra>19.1540-4</ra>
+                    <rg>13.644.603-5</rg>
+                    <email>gustavomorais@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Pedro Caio Pereira</nome>
+                    <ra>20.9875-1</ra>
+                    <rg>43.344.781-3</rg>
+                    <email>pedrocaio@integrado.com</email>
+                </aluno>
+                <aluno>
+                    <nome>Alfredo Santos da Costa</nome>
+                    <ra>18.6548-9</ra>
+                    <rg>31.970.288-1</rg>
+                    <email>alferedosantos@integrado.com</email>
+                </aluno>
+            </alunos>
+        </disciplina>
+    </tads>

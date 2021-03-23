@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     );
 
         Checklist.associate = function(models) {
-            this.belogsTo(models.Nota,{
+            this.belongsTo(models.Nota,{
                 foreignKey: 'notaId',
             });
         };

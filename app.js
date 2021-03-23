@@ -7,13 +7,23 @@ const usuario = require('./rotas/usuario');
 const checklist = require('./rotas/checklist');
 const nota = require('./rotas/nota');
 const tag = require('./rotas/tag');
+const login = require('./rotas/login');
 // const port = 3000;
+const auth = require('./middlewares/auth')
 const fs = require ('fs');
 const https = require('https');
+const cors = require('cors');
 const portaHttps = 443;
 
+app.use(
+    cors({
+        origin: ['https:localhost:8080'],
+    })
+);
 app.use(bodyParser.json());
 
+app.use('/login', login);
+app.use(auth);
 app.use('/usuario', usuario);
 app.use('/checklist', checklist);
 app.use('/nota', nota);
