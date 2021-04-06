@@ -1,4 +1,4 @@
-const { Nota } = require('../models/nota');
+const { Nota, Checklist, Tag } = require('../models');
 const controller = {};
 
 controller.getNota = async (id = null) => {
@@ -30,6 +30,53 @@ controller.remove = async (id) =>{
         console.log(error);
         throw new Error(error);
     }
+};
+// ---------------------------------
+controller.getById = async(id) => {
+    return await Nota.findOne({
+        where:{
+            id, 
+        },
+        include: [
+            {
+                model: Checklist,
+                as: 'checklists',
+            },
+            {
+                model: Tag,
+                as: 'tags',
+            }
+        ]
+    });
+};
+controller.getByUsuarioId = async(usuarioId, tagName = null) => {
+    let where = null;
+    let required = false;
+    if(tagName){
+        where = {nome: tagName};
+        required = true;
+    }
+    return await Nota.findAll({
+        where: {
+            usuarioId
+        },
+        include: [
+            {
+                model: Checklist,
+                as: 'checklists',
+            },
+            {
+                model: Tag,
+                as: 'tags',
+                where,
+                required,
+            },
+        ],
+    });
+};
+
+controller.save = async ({usuarioId, titulo, descricao, checklists, tags}) => {
+
 };
 
 module.exports = controller;
