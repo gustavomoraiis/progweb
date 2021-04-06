@@ -44,7 +44,7 @@ router.put('/:id?', async (req, res) => {
 
 router.delete('/:id?', (req, res) => {
    try{
-        const {id} = req.params;   
+        const { notaId, id} = req.params;   
         await controller.remove(id);
 
         res.send({id})

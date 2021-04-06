@@ -28,18 +28,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id?', async (req, res) => {
-    try{
-        const {body} = rep;
-        const {id} = req.params;
-
-        await controller.edit(id, body);
-
-        res.send(tag);
-    } catch (error){
-        res.status(500).send({error})
-    }
-});
 
 router.delete('/:id?', (req, res) => {
    try{

@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const controller = require('../controller/nota');
-const { Nota } = require('../models/nota');
+const controller = require('../controller/default');
+const controllerNota = require('../controller/nota');
+const { Nota } = require('../models');
 // const notas = [
 //     {usuarioId: 1, titulo: 'Henrique', descricao:'', criadoEm:'20/01/2021', atualizadoEm:'25/02/2021'},
 //     {usuarioId: 2, titulo: 'Gustavo', descricao:'', criadoEm:'23/01/2021', atualizadoEm:'20/02/2021'},
@@ -9,19 +10,28 @@ const { Nota } = require('../models/nota');
 //     {usuarioId: 4, titulo: 'Silva', descricao:'', criadoEm:'02/02/2021', atualizadoEm:'19/02/2021'}
 // ];
 
-router.get('/:id?', async (req, res) => {
-    // const usuarios = controller.getUsuarios();
-    const {id} = req.params;
+// router.get('/:id', async (req, res) => {
+//     // const usuarios = controller.getUsuarios();
+//     const {id} = req.params;
 
-    const notas = await controller.getNota(id);
-    res.send(notas);
+//     const nota = await controllerNota.getById(id);
+//     res.send(nota);
+// });
+
+router.get('/usuario/:usuarioId', async(req, res) =>{
+    const {usuarioId} = req.params;
+    const {tag} = req.query;
+    
+    const notas = await controllerNota.getByUsuarioId(usuarioId, tag);
+
+    res.send(notas || []);
 });
 
 router.post('/', async (req, res) => {
     try{
     const{body} = req;
 
-    await controller.save(body);
+   const nota = await controllerNota.save(body);
 
     res.send(nota);
     }catch (error){

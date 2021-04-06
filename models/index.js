@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const _Usuario = require('./usuario');
 const _Nota = require ('./nota');
 const database = {};
@@ -13,28 +13,34 @@ const options = {
 
 const sequelize = new Sequelize(options);
 
-let Usuario = _Usuario(sequelize, DataTypes);
-let Nota = _Nota(sequelize, DataTypes);
+// let Usuario = _Usuario(sequelize, DataTypes);
+// let Nota = _Nota(sequelize, DataTypes);
 
-database['Usuario'] = Usuario;
-database['Nota'] = Nota;
+// database['Usuario'] = Usuario;
+// database['Nota'] = Nota;
 
-console.log(database);
+// console.log(database);
 
-for (const key in database){
-    // if(Object.hasOwnPrproperty.call(database, key)){
-    //     const element = database[key];
-    // }
-    if (database[key].associate) database[key].associate(database);
-}
+// for (const key in database){
+//     // if(Object.hasOwnPrproperty.call(database, key)){
+//     //     const element = database[key];
+//     // }
+//     if (database[key].associate) database[key].associate(database);
+// }
 
-Nota.findAll({
-    include: [
-        {
-           model: Usuario,
-        }
-    ]
-}).then(result => console.log(result));
+const Checklist = _Checklist(sequelize,DataTypes);
+const Nota = _Nota(sequelize, DataTypes);
+const Tag = _Tag(sequelize, DataTypes);
+const Usuario = _Usuario(sequelize, DataTypes);
+
+Checklist.belongsTo(Nota, {as: 'nota', foreignKey:'notaId'});
+Nota.hasMany(Checklist, {as: 'checklists', foreignKey:'notaId'});
+Nota.hasMany(Tag, {as: 'tags', foreignKey: 'notaId'});
+Nota.belongsTo(Usuario, {as:'usuario', foreignKey: 'usuarioId'});
+Tag.belongsTo(Nota,{as: 'nota', foreignKey: 'notaId'});
+
+database = { Checklist, Nota, Tag, Usuario};
+
 
 sequelize
     .authenticate()
