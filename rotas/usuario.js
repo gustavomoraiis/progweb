@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const controller = require('../controller/default');
 const usuarioController = require('../controller/usuario');
-const { Usuario } = require('../models');
+// const { Usuario } = require('../models');
 // const usuarios = [
 //     {id: 1, nome: 'Henrique', email:'henrique@grupointegrado.com.br', senha:'mudar123456', avatar:'encurtador.com.br/vCPR9'},
 //     {id: 2, nome: 'Gustavo', email:'gustavo@grupointegrado.com.br', senha:'mudar159951', avatar:'encurtador.com.br/vCPR9'},
@@ -56,11 +56,11 @@ router.get('/:usuarioId', async (req, res) => {
     res.send(usuarios);
 });
 
-router.delete('/notaId/:id?', (req, res) => {
+router.delete('/usuarioId/:id?', (req, res) => {
    try{
-        const {notaId, id} = req.params;
+        const {usuarioId, id} = req.params;
 
-        await controller.remove(notaId, id);
+        await controller.remove(usuarioId, id);
 
         res.send({id})
     } catch (error){
