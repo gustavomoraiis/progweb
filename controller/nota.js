@@ -1,4 +1,4 @@
-const { Nota, Checklist, Tag } = require('../models');
+const { Nota, Checklist, Tag, sequelize } = require('../models');
 const controller = {};
 
 controller.getNota = async (id = null) => {
@@ -75,8 +75,48 @@ controller.getByUsuarioId = async(usuarioId, tagName = null) => {
     });
 };
 
-controller.save = async ({usuarioId, titulo, descricao, checklists, tags}) => {
+controller.save = async ({usuarioId, titulo = null, descricao = null, checklists = [], tags = []}) => {
+    const transaction = await sequelize.transaction();
+    try{
+        let notaSalva = await Nota.create({
+            usuarioId, titulo, descricao,
+        },{
+            transaction,
+        });
 
+        let checklistSalvo = [];
+
+        if(checklists.length > 0){
+            for(let checklist of checklists){
+                checklist = {...checklist, notaId: notaSalva.id};
+
+                const checklistSalvo = await Checklist.create(checklist,{
+                    transaction,
+                });
+                    checklistsSalvos.push(checklistSalvo);
+            }
+        }
+
+        let tagsSalvas = [];
+
+        if(tags.length > 0){
+            for (let tag of tags){
+                tag = {...tag, notaId: notaSalva.id};
+
+                const tagSalva = await Tag.create(tag,{
+                    transaction,
+                });
+
+                tagsSalvas = [...tagsSalvas, tagSalva]; 
+            }
+        }
+
+        await transaction.commit();
+
+        return notaSalva;
+    }catch (error) {
+        await transaction.rollback();
+    }
 };
 
 module.exports = controller;

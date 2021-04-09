@@ -17,11 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         descricao: {
             type: DataTypes.TEXT,
-            allowNull: true
+            allowNull: false
         },
         concluida: {
-            type: DataTypes.BIT,
-            allowNull: true
+            type: DataTypes.INTERGER,
+            allowNull: false,
+            defaultValue: 0,
         }
     }, {
         tableName: 'checklist',
