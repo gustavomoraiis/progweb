@@ -12,9 +12,9 @@ controller.getNota = async (id = null) => {
     return result;
 };
 
-controller.save = async (nota) => {
-    return await Nota.create(nota);
-};
+// controller.save = async (nota) => {
+//     return await Nota.create(nota);
+// };
  
 controller.edit = async (id, nota) => {
     await Nota.update(nota, {
@@ -85,7 +85,6 @@ controller.save = async ({usuarioId, titulo = null, descricao = null, checklists
         });
 
         let checklistSalvo = [];
-
         if(checklists.length > 0){
             for(let checklist of checklists){
                 checklist = {...checklist, notaId: notaSalva.id};
@@ -98,7 +97,6 @@ controller.save = async ({usuarioId, titulo = null, descricao = null, checklists
         }
 
         let tagsSalvas = [];
-
         if(tags.length > 0){
             for (let tag of tags){
                 tag = {...tag, notaId: notaSalva.id};
@@ -111,6 +109,7 @@ controller.save = async ({usuarioId, titulo = null, descricao = null, checklists
             }
         }
 
+        notaSalva = {...notaSalva, checklists: checklistsSalvos, tags: tagsSalvas};
         await transaction.commit();
 
         return notaSalva;

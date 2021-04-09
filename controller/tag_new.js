@@ -1,13 +1,37 @@
-const { Tag } = require('../models/tag');
+const { Tag, Nota } = require('../models');
 const controller = {};
 
-controller.delete = async (notaId, Id) =>{
-    return await Tag.destroy({
-        where: {
-            id,
-            notaId,
-        }
-    });
+controller.getByUsuarioId = async (usuarioId) => {
+    try{
+        return await Tag.fildAll({
+            include: [
+                {
+                    model: Nota,
+                    required: true,
+                    as: "nota",
+                    where: {
+                        usuarioId,
+                    },
+                },
+            ],
+        });
+    } catch(error){
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
+controller.remove = async (notaId, id) =>{
+    try{
+        return await Tag.destroy({
+            where: {
+                id,
+                notaId,
+            },
+        });
+    } catch(error){
+        throw new Error(error);
+    };
 };
 
 module.exports = controller;

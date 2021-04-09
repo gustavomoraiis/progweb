@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const controller = require('../controller/default');
+const usuarioController = require('../controller/usuario');
 const { Usuario } = require('../models');
 // const usuarios = [
 //     {id: 1, nome: 'Henrique', email:'henrique@grupointegrado.com.br', senha:'mudar123456', avatar:'encurtador.com.br/vCPR9'},
@@ -9,13 +10,7 @@ const { Usuario } = require('../models');
 //     {id: 4, nome: 'Silva', email:'silva@grupointegrado.com.br', senha:'mudar456951', avatar:'encurtador.com.br/vCPR9'}
 // ];
 
-router.get('/:id?', async (req, res) => {
-    // const usuarios = controller.getUsuarios();
-    const {id} = req.params;
 
-    const usuarios = id ? await controller.getById(Usuario, id) : await controller.getAll(Usuario) ;
-    res.send(usuarios);
-});
 
 router.post('/', async (req, res) => {
     try{
@@ -42,16 +37,6 @@ router.put('/:id?', async (req, res) => {
     }
 });
 
-router.delete('/:id?', (req, res) => {
-   try{
-        const {id} = req.params;   
-        await controller.remove(id);
-
-        res.send({id})
-    } catch (error){
-    res.status(500).send({error})
-    }
-});
 // router.get('/:id?', function(req, res){
 //     let result;
 
@@ -63,4 +48,23 @@ router.delete('/:id?', (req, res) => {
 //     res.json(result);
 // });
 
+
+router.get('/:usuarioId', async (req, res) => {
+    const {usuarioId} = req.params;
+
+    const usuarios = await UsuarioController.tagByUsuarioId(usuarioId);
+    res.send(usuarios);
+});
+
+router.delete('/notaId/:id?', (req, res) => {
+   try{
+        const {notaId, id} = req.params;
+
+        await controller.remove(notaId, id);
+
+        res.send({id})
+    } catch (error){
+    res.status(500).send({error})
+    }
+});
 module.exports = router;

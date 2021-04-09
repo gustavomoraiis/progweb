@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const controller = require('../controller/checklist');
-const { Checklist } = require('../models/checklist');
+//const controller = require('../controller/default');
+const checklistController = require('../controller/checklist_new');
+//const { Checklist } = require('../models/checklist');
 // const checklists = [
 //     {notaId: 1, descricao:'lorem1', concluida:'1'},
 //     {notaId: 2, descricao:'lorem2', concluida:'0'},
@@ -9,47 +10,47 @@ const { Checklist } = require('../models/checklist');
 //     {notaId: 4, descricao:'lorem4', concluida:'1'}
 // ];
 
-router.get('/:id?', async (req, res) => {
+// router.post('/', async (req, res) => {
+//     try{
+//     const{body} = req;
+
+//     await controller.save(body);
+
+//     res.send(checklist);
+//     }catch (error){
+//         res.status(500).send({error})
+//     }
+// });
+
+// router.put('/:id?', async (req, res) => {
+//     try{
+//         const {body} = rep;
+//         const {id} = req.params;
+
+//         await controller.edit(id, body);
+
+//         res.send(checklist);
+//     } catch (error){
+//         res.status(500).send({error})
+//     }
+// });
+
+router.get('/:usuarioId', async (req, res) => {
    
-    const {id} = req.params;
+    const {usuarioId} = req.params;
 
-    const checklists = await controller.getChecklist(id);
-    res.send(checklists);
+    const checklists = await checklistController.getByUsuarioId(usuarioId);
+    res.send(checklists || []);
 });
 
-router.post('/', async (req, res) => {
-    try{
-    const{body} = req;
-
-    await controller.save(body);
-
-    res.send(checklist);
-    }catch (error){
-        res.status(500).send({error})
-    }
-});
-
-router.put('/:id?', async (req, res) => {
-    try{
-        const {body} = rep;
-        const {id} = req.params;
-
-        await controller.edit(id, body);
-
-        res.send(checklist);
-    } catch (error){
-        res.status(500).send({error})
-    }
-});
-
-router.delete('/:id?', (req, res) => {
+router.delete('/:notaId/:id', async (req, res) => {
    try{
-        const { notaId, id} = req.params;   
-        await controller.remove(id);
+        const {notaId, id} = req.params;   
+        await checklistController.remove(notaId, id);
 
         res.send({id})
     } catch (error){
-    res.status(500).send({error})
+        res.status(500).send({error})
     }
 });
 

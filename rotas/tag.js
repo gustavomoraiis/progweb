@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const controller = require('../controller/tag');
-const { Tag } = require('../models/tag');
+//const controller = require('../controller/defalut');
+const tagController = require('../controller/tag_new');
+//const { Tag } = require('../models/tag');
 // const tags = [
 //     {notaId: 1, nome:'aprovado'},
 //     {notaId: 2, nome:'reprovado'},
@@ -9,42 +10,39 @@ const { Tag } = require('../models/tag');
 //     {notaId: 4, nome:'reprovado'}
 // ];
 
-router.get('/:id?', async (req, res) => {
-    const {id} = req.params;
+// router.post('/', async (req, res) => {
+//     try{
+//     const{body} = req;
 
-    const tags = await controller.getTag(id);
+//     await controller.save(body);
+
+//     res.send(tag);
+//     }catch (error){
+//         res.status(500).send({error})
+//     }
+// });
+// router.post('/', function(req, res){ 
+//     console.log(req.body);
+//     res.json({});
+//  });
+
+router.get('/:usuarioId', async (req, res) => {
+    const {usuarioId} = req.params;
+
+    const tags = await tagController.tagByUsuarioId(usuarioId);
     res.send(tags);
 });
 
-router.post('/', async (req, res) => {
-    try{
-    const{body} = req;
-
-    await controller.save(body);
-
-    res.send(tag);
-    }catch (error){
-        res.status(500).send({error})
-    }
-});
-
-
-router.delete('/:id?', (req, res) => {
+router.delete('/notaId/:id?', (req, res) => {
    try{
-        const {id} = req.params;   
-        await controller.remove(id);
+        const {notaId, id} = req.params;
+
+        await controller.remove(notaId, id);
 
         res.send({id})
     } catch (error){
     res.status(500).send({error})
     }
 });
-
-
-// router.post('/', function(req, res){ 
-//     console.log(req.body);
-//     res.json({});
-//  });
-
 
 module.exports = router;

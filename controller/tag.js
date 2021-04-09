@@ -1,4 +1,4 @@
-const { Tag } = require('../models/tag');
+const { Tag } = require('../models');
 const controller = {};
 
 controller.getTag = async (id = null) => {
@@ -31,5 +31,7 @@ controller.remove = async (id) =>{
         throw new Error(error);
     }
 };
+
+
 
 module.exports = controller;

@@ -1,12 +1,38 @@
-const { Checklist } = require('../models/checklist');
+const { Checklist, Nota } = require('../models');
 const controller = {};
+
+controller.getByUsuarioId = async (usuarioId) =>{
+    try{
+        return await Checklist.findAll({
+            include: [
+                {
+                    model: Nota,
+                    as: "nota",
+                    required: true,
+                    where:{
+                        usuarioId
+                    },
+                },
+            ],
+        });
+    } catch(error){
+        console.log(error);
+        throw new Error(error);
+    }
+};
 
 controller.remove = async (notaId, id) =>{
     try{
         return await Checklist.destroy({
             where: {
-
+                id,
+                notaId,
             },
         });
-    } catch (error);
+    } catch (error){
+        throw new Error(error);
+    };
 };
+
+
+module.exports = controller;
