@@ -2,8 +2,8 @@
   "name": "notes-api",
   "version": "1.0.0",
   "main": "app.js",
-  "repository": "https://github.com/woodyalan/notes-api.git",
-  "author": "Alan Santos <alansantos@grupointegrado.br>",
+  "repository": "https://github.com/gustavomoraiis/progweb",
+  "author": "Gustavo Morais <gustavohenriquecfal@gmail.com>",
   "license": "MIT",
   "scripts": {
     "serverdev": "cross-env NODE_ENV=development nodemon app.js",
