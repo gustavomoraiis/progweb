@@ -1,46 +1,40 @@
-console.log('Minha primeira aplicação Node');
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const app = express();
-const usuario = require('./rotas/usuario');
-const checklist = require('./rotas/checklist');
-const nota = require('./rotas/nota');
-const tag = require('./rotas/tag');
-const login = require('./rotas/login');
-// const port = 3000;
-const auth = require('./middlewares/auth')
-const fs = require ('fs');
+const usuario = require('./routes/usuario');
+const nota = require('./routes/nota');
+const checklist = require('./routes/checklist');
+const tag = require('./routes/tag');
+const login = require('./routes/login');
+const auth = require('./middlewares/auth');
+const fs = require('fs');
 const https = require('https');
 const cors = require('cors');
-const portaHttps = 443;
+const portaHttps = 4443;
 
 app.use(
-    cors({
-        origin: ['https:localhost:8080'],
-    })
+  cors({
+    origin: ['http://localhost:3000'],
+  })
 );
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 app.use('/login', login);
 app.use(auth);
 app.use('/usuario', usuario);
 app.use('/checklist', checklist);
-app.use('/nota', nota);
 app.use('/tag', tag);
+app.use('/nota', nota);
 
 const key = fs.readFileSync('certs/localhost-key.pem');
 const cert = fs.readFileSync('certs/localhost.pem');
 
-const credentials = { key, cert};
+const credentials = { key, cert };
 
 const httpsServer = https.createServer(credentials, app);
 
-// app.listen(port, () => {
-//     console.log('Aplicação rodando em http://localhost3000');
-//     // console.log(`Aplicação rodando em http://localhost${porta}`);
-// });
-
 httpsServer.listen(portaHttps, () => {
-    console.log(`API rodando seguramente na porta ${portaHttps}`);
+  console.log(`API rodando seguramente na porta ${portaHttps}`);
 });

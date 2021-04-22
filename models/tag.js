@@ -1,36 +1,29 @@
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-    const Tag = sequelize.define('Tag',{
-        id:{
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true,
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(
+    'tag',
+    {
+      id: {
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      notaId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'nota',
+          key: 'id',
         },
-        notaId:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references:{
-                model: 'nota',
-                key: 'id'
-            }
-        },
-        nome: {
-            type: DataTypes.STRING(50),
-            allowNull: true
-        },
-     
-    }, {
-        tableName: 'tag',
-        timestamps: false,
-        }
-    );
-
-        Tag.associate = function(models) {
-            this.belongsTo(models.Nota,{
-                foreignKey: 'notaId',
-            });
-        };
-
-    return Tag;
+      },
+      nome: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+    },
+    {
+      tableName: 'tag',
+      timestamps: false,
+    }
+  );
 };
