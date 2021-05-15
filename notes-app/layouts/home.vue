@@ -31,7 +31,6 @@ export default {
     primeiroNome() {
       if (this.usuario) {
         const [nome] = this.usuario.nome.split(" ");
-
         return nome;
       }
     }

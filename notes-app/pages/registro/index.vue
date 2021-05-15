@@ -1,26 +1,17 @@
 <template>
     <section>
         <div class="container ">
-
-
-                
-               
-                   
-
-                        
-          
-            
            <div class="row d-flex align-items-center">
                <div class="col-md-12 col-sm-12 col-lg-4"></div>
                <div class="col-md-12 col-sm-12 col-lg-4  margin">
                     <h1>Notes App</h1>
                     <p>Informe os dados abaixo para registrar um novo usuário.</p>
                     
-                        <b-form @submit.prevent="login">
+                        <b-form @submit.prevent="registro">
 
                             <b-form-group>
                                 <b-form-input
-                                    v-model="nome"
+                                    v-model="usuario.nome"
                                     type="text"
                                     placeholder="Nome"
                                     required
@@ -30,7 +21,7 @@
 
                             <b-form-group>
                                 <b-form-input
-                                    v-model="email"
+                                    v-model="usuario.email"
                                     type="email"
                                     placeholder="E-mail"
                                     required
@@ -39,7 +30,7 @@
 
                             <b-form-group>
                                 <b-form-input
-                                    v-model="senha"
+                                    v-model="usuario.senha"
                                     type="password"
                                     placeholder="Senha" 
                                     required
@@ -57,6 +48,7 @@
                             </div>
                             
                            
+                            
                         </b-form>
                      
                </div>
@@ -71,8 +63,37 @@
 
 <script>
 export default {
+  layout: "home",
+  data() {
+    return {
+      usuario: {
+        nome: null,
+        email: null,
+        senha: null,
+        avatar: null
+      }
+    };
+  },
+  methods: {
+    async registro() {
+      try {
+        await this.$auth.save("local", {
+          data: {
+            nome: this.usuario.nome,
+            email: this.usuario.email,
+            senha: this.usuario.senha,
+            avatar: ''
+          }
+        });
 
-}
+        this.$router.post("/");
+      } catch (e) {
+        
+        console.log(e);
+      }
+    }
+  }
+};
 </script>
 
 <style>
