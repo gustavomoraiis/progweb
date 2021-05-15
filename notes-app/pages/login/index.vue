@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-7 d-flex vh-100 justify-content-center">
-        <div class="col-md-5 align-self-center">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+       <div class="col-md-12 col-sm-12 col-lg-4"></div>
+      <div class="col-md-12 col-sm-12 col-lg-4  margin">
           <h1>Notes App</h1>
           <p>Informe os dados abaixo para acessar</p>
 
@@ -27,9 +27,9 @@
 
             <b-button block type="submit" variant="primary">Acessar</b-button>
           </b-form>
-        </div>
+          <a class="mt-5" href="../registro">Ainda não possui uma conta? Clique aqui para criar!</a>
       </div>
-      <div class="col-md-5 vh-100 cover"></div>
+      <div class="col-md-12 col-sm-12 col-lg-4"></div>
     </div>
   </div>
 </template>
@@ -64,5 +64,18 @@ export default {
 <style>
 .cover {
   background: url("https://url.gratis/wftZc") center center;
+}
+
+.margin{
+    margin-top: 25%;
+}
+
+body {
+  /* background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(24,0,112,1) 100%); */
+
+  background: url("assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 </style>
