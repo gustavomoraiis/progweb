@@ -52,8 +52,7 @@
                         </b-form>
                      
                </div>
-           
-                       <div class="col-md-12 col-sm-12 col-lg-4"></div> 
+                <div class="col-md-12 col-sm-12 col-lg-4"></div> 
             </div>      
                 
             
@@ -77,18 +76,10 @@ export default {
   methods: {
     async registro() {
       try {
-        await this.$auth.save("local", {
-          data: {
-            nome: this.usuario.nome,
-            email: this.usuario.email,
-            senha: this.usuario.senha,
-            avatar: ''
-          }
-        });
+        const { data } = await this.$axios.post("usuario", this.usuario);
 
-        this.$router.post("/");
+        this.$router.push("/login");
       } catch (e) {
-        
         console.log(e);
       }
     }

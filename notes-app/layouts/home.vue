@@ -17,6 +17,8 @@
     </b-navbar>
 
     <div class="container">
+      <offline-alert v-show="$nuxt.isOffline" />
+
       <Nuxt />
     </div>
   </div>
@@ -31,6 +33,7 @@ export default {
     primeiroNome() {
       if (this.usuario) {
         const [nome] = this.usuario.nome.split(" ");
+
         return nome;
       }
     }
