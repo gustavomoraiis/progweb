@@ -37,6 +37,11 @@
           ></b-form-tags>
         </b-input-group>
 
+        <n-tag
+          v-if="exibirTag"
+          v-model="this.nota.tags"
+        ></n-tag>
+
         <b-button
           type="button"
           variant="warning"
