@@ -1,20 +1,26 @@
 <template>
   <div>
-    <ul class="list-unstyled">
-      <li v-for="(item, index) of value" :key="index">
-        <n-tag-item v-model="value[index]"></n-tag-item>
-      </li>
-      <li>
-        <n-tag-item
-          v-model="tag"
-          @itemConfirmado="adicionar()"
-        ></n-tag-item>
-      </li>
-    </ul>
+    <pre>
+    {{ value }}
+    </pre>
+    <b-form-tag
+      class="my-2"
+      v-for="(tag, index) of value"
+      :key="index"
+      no-remove
+    >
+      {{ tag.nome }}
+    </b-form-tag>
 
-    <p class="text-muted">
-      <small>{{ mensagemNumeroItens }} </small>
-    </p>
+    <b-form-group>
+      <b-form-input
+        class="bg-warning border-0 titulo text-dark my-2"
+        type="text"
+        placeholder="Categorize sua nota com tags"
+        v-model="tag"
+        @keyup.enter="adicionar()"
+      ></b-form-input>
+    </b-form-group>
   </div>
 </template>
 
@@ -26,30 +32,16 @@ export default {
   },
   data() {
     return {
-      tag: {
-        descricao: null,
-        concluida: 0
-      }
+      tag: null
     };
-  },
-  computed: {
-    numeroItens() {
-      return this.value.length;
-    },
-    mensagemNumeroItens() {
-      return this.value.length > 1
-        ? `${this.numeroItens} itens adicionados`
-        : `${this.numeroItens} item adicionado`;
-    }
   },
   methods: {
     adicionar() {
-      this.value.push(this.tag);
-
-      this.tag = {
-        descricao: null,
-        concluida: 0
-      };
+      !this.isDuplicado(this.tag) && this.value.push({ nome: this.tag });
+      this.tag = null;
+    },
+    isDuplicado(nomeTag) {
+      return this.value.find(t => t.nome == nomeTag);
     }
   }
 };

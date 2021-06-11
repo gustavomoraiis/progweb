@@ -28,19 +28,7 @@
           v-model="this.nota.checklists"
         ></n-checklist>
 
-        <b-input-group>
-          <b-form-tags
-            class="bg-warning border-0 text-dark"
-            tag-variant="dark"
-            placeholder="Adicione tags"
-            v-model="nota.tags"
-          ></b-form-tags>
-        </b-input-group>
-
-        <n-tag
-          v-if="exibirTag"
-          v-model="this.nota.tags"
-        ></n-tag>
+        <n-tag v-model="nota.tags" />
 
         <b-button
           type="button"
