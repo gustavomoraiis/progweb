@@ -97,9 +97,12 @@ export default {
       this.$router.push(`/nota/edit/${notaSaved.id}`);
     },
     async editar() {
-      await this.$store.dispatch("nota/edit", this.nota);
+      	if (this.$nuxt.isOffline) {
+          window.$nuxt.isOffline
+          await this.$store.dispatch("nota/edit", this.nota);
 
-      await this.carregar();
+          await this.carregar();
+        }
     },
     async carregar() {
       const { data } = await this.$axios.get(`nota/${this.id}`);
